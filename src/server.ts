@@ -14,6 +14,7 @@ async function connectDB() {
     console.log(colors.red.bold ('Hubo un error al conetar a la BD'))
   }
 }
+
 connectDB()
 
 //Instancia de express
@@ -23,6 +24,5 @@ const server = express()
 server.use(express.json())
 
 server.use('/api/products/', router)
-
 
 export default server
