@@ -12,7 +12,6 @@ router.get('/:id',
   getProductById)
 
 
-
 router.post('/',
     //Validacion
     body('name').notEmpty().withMessage('El nombre de Producto no puede ir vacio'),
