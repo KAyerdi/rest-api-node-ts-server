@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --watch src --exec ts-node src/index.ts",
     "test": "jest --detectOpenHandles",
-    "db": "ts-node ./src/data --clear"
+    "pretest": "ts-node ./src/data --clear"
   },
   "repository": {
     "type": "git",
