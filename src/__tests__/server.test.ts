@@ -9,5 +9,7 @@ describe('GET /api', () => {
     expect(res.headers['content-type']).toMatch(/json/)
 
     expect(res.body.msg).toBe('Desde API')
+    expect(res.status).not.toBe(404)
+    expect(res.body.msg).not.toBe('DESDE API')
   })
 })
