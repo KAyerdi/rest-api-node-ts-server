@@ -193,7 +193,7 @@ describe('DELETE /api/product/:id', () => {
   })
 
   test('should delete a product', async () => {
-    const response = await request(server).delete('/api/product/1')
+    const response = await request(server).delete('/api/products/1')
     expect(response.status).toBe(200)
     expect(response.body.data).toBe('Producto Eliminado')
     expect(response.status).not.toBe(404)

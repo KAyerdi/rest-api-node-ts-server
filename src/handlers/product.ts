@@ -3,43 +3,31 @@ import Product from "../models/Product.module"
 
 //Obtener productos
 export const  getProducts = async (req: Request, res: Response) => {
-  try {
-    const products = await Product.findAll({
-      order: [
-        ['price', 'DESC']
-      ],
-      attributes: {exclude: ['createdAt','updatedAt','availability']}
-    })
-    res.json({data: products})
-  }catch(error){
-    console.log(error)
-  }
+  const products = await Product.findAll({
+    order: [
+      ['price', 'DESC']
+    ],
+    attributes: {exclude: ['createdAt','updatedAt','availability']}
+  })
+  res.json({data: products})
 }
 
 //Obtener producto por ID
 export const  getProductById = async (req: Request, res: Response) => {
-  try {
-      const { id } = req.params
-      const product = await Product.findByPk(id)
-      if(!product){
-        return res.status(404).json({
-          error: 'Producto No Encontrado'
-        })
-      }
-      res.json({data: product})
-  }catch(error){
-    console.log(error)
+  const { id } = req.params
+  const product = await Product.findByPk(id)
+  if(!product){
+    return res.status(404).json({
+      error: 'Producto No Encontrado'
+    })
   }
+  res.json({data: product})
 }
 
 //Crear un producto
 export const createProduct = async (req : Request, res : Response) => {
-  try{
-    const product = await Product.create(req.body)
-    res.status(201).json({data: product})
-  } catch (error) {
-    console.log(error)
-  }
+  const product = await Product.create(req.body)
+  res.status(201).json({data: product})
 }
 //Actualizar producto
 export const updateProduct = async (req: Request, res: Response) => {
