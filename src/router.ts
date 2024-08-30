@@ -4,6 +4,25 @@ import { createProduct, deleteProduct, getProductById, getProducts, updateAvaila
 import { handleInputErrors } from "./middleware"
 
 const router = Router()
+/**
+ * @swagger
+ *  components:
+ *       schemas:
+ *          Product:
+ *              type: object
+ *              properties:
+ *                   id:
+ *                       type: integer
+ *
+ *
+ * 
+ * 
+ * 
+ *
+ */
+
+
+
 //Routing
 router.get('/', getProducts)
 router.get('/:id',
