@@ -13,22 +13,58 @@ const router = Router()
  *              properties:
  *                   id:
  *                       type: integer
- *
- *
- * 
- * 
- * 
- *
+ *                       description: The Product ID
+ *                       example: 1
+ *                   name:
+ *                       type: string
+ *                       description: The Product name
+ *                       example: Monitor Curvo de 49 Pulgadas
+ *                   price:
+ *                       type: number
+ *                       description: The Product price
+ *                       example: 300
+ *                   availability:
+ *                       type: boolean
+ *                       description: The Product availability
+ *                       example: true
  */
 
+/**
+ * @swagger
+ * /api/products
+ *      get:
+ *         summary: Get a list of products
+ *         tags:
+ *             - Auth
+ *         description: Return a list of products
+ *         responses:
+ *             200:
+ *                 description: Successful response
+ *                 content:
+ *                     application/json:
+ *                         schema:
+ *                            type: array
+ *                            items:
+ *                             $ref: '#/components/schema/Product'
+ *
+ *
+*/
 
+/**
+ * @swagger
+ * /api/products/{id}:
+ * get:
+ *    summary: Get a product by ID
+ *    tags:
+ *        - Products
+ */
 
-//Routing
 router.get('/', getProducts)
 router.get('/:id',
   param('id').isInt().withMessage('ID no valido'),
   handleInputErrors,
-  getProductById)
+  getProductById
+)
 
 
 router.post('/',
