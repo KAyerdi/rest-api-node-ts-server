@@ -31,11 +31,11 @@ const router = Router()
 
 /**
  * @swagger
- * /api/products
+ * /api/products:
  *      get:
  *         summary: Get a list of products
  *         tags:
- *             - Auth
+ *             - Products
  *         description: Return a list of products
  *         responses:
  *             200:
@@ -46,26 +46,59 @@ const router = Router()
  *                            type: array
  *                            items:
  *                             $ref: '#/components/schema/Product'
- *
- *
 */
+router.get('/', getProducts)
 
 /**
  * @swagger
  * /api/products/{id}:
- * get:
- *    summary: Get a product by ID
- *    tags:
- *        - Products
+ *      get:
+ *         summary: Get a product by ID
+ *         tags:
+ *             - Products
+ *         description: Return a product based on its unique ID
+ *         parameters:
+ *            - in: path
+ *              name: id
+ *              description: The ID of the product to retrieve
+ *              required: true
+ *              schema:
+ *                  type: integer
+ *         responses:
+ *            200:
+ *               description: Successful Response
+ *               content:
+ *                  application/json:
+ *                     schema:
+ *                        $ref: '#/components/schema/Product'
+ *
+ *            404:
+ *                description: Not found
+ *
+ *            400:
+ *                description: Bad Request - Invalid ID
+ *
+ *
+ *
+ *
+ *
  */
 
-router.get('/', getProducts)
 router.get('/:id',
   param('id').isInt().withMessage('ID no valido'),
   handleInputErrors,
   getProductById
 )
 
+/**
+ * @swagger
+ * /api/products:
+ * post:
+ *      summary: Creates a new Product
+ *      tags:
+ *          - Products
+ * 
+ */
 
 router.post('/',
     //Validacion
@@ -77,6 +110,7 @@ router.post('/',
   handleInputErrors,
   createProduct
 )
+
 router.put('/:id',
       param('id').isInt().withMessage('ID no valido'),
       body('name').notEmpty().withMessage('El nombre de Producto no puede ir vacio'),
